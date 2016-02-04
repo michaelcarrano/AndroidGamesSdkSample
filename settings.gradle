@@ -1,0 +1,3 @@
+include ':PlayGamesSDK'
+include ':GameCircleSDK'
+include ':app'

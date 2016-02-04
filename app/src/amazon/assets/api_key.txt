@@ -1,0 +1,2 @@
+Download a copy of `api_key.txt` from your [Amazon GameCircle Configurations](https://developer.amazon.com/gc/cfg/index.html)
+and replace this file.

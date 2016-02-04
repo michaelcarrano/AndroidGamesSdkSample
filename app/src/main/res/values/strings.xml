@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroidGamesSdkSample</string>
+
+    <string name="show_leaderboard">Show LeaderBoard</string>
+    <string name="show_achievement">Show Achievement</string>
+
+    <string name="update_leaderboard">Update LeaderBoard</string>
+    <string name="update_achievement">Update Achievement</string>
+</resources>

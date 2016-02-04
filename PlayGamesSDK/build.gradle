@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+    }
+}
+
+dependencies {
+    compile 'com.google.android.gms:play-services-plus:8.4.0'
+    compile 'com.google.android.gms:play-services-games:8.4.0'
+}
+
+android {
+    // Set defaults so that BaseGameUtils can be used outside of BasicSamples
+    if (!hasProperty('android_compile_version')) {
+        ext.android_compile_version = 23
+    }
+    if (!hasProperty('android_version')) {
+        ext.android_version = '23.0.2'
+    }
+
+    compileSdkVersion android_compile_version
+    buildToolsVersion android_version
+}
+
