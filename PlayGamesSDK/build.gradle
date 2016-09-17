@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.1.3'
     }
 }
 
@@ -22,7 +22,7 @@ android {
         ext.android_compile_version = 23
     }
     if (!hasProperty('android_version')) {
-        ext.android_version = '23.0.2'
+        ext.android_version = '24.0.2'
     }
 
     compileSdkVersion android_compile_version
