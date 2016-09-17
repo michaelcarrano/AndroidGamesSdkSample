@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.2"
+    compileSdkVersion compileSdk
+    buildToolsVersion "${buildTools}"
 
     defaultConfig {
         applicationId "com.michaelcarrano.androidgamessdksample"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
         versionCode 1
         versionName "1.0"
     }
@@ -29,10 +29,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
-
     googleCompile project(':PlayGamesSDK')
     amazonCompile project(':GameCircleSDK')
+
+    compile 'com.android.support:appcompat-v7:23.1.1'
 
     testCompile 'junit:junit:4.12'
 }
