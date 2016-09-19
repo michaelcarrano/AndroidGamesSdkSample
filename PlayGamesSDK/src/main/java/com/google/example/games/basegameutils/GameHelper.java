@@ -16,10 +16,7 @@
 
 package com.google.example.games.basegameutils;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +28,6 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.Api.ApiOptions.NoOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
@@ -44,36 +40,32 @@ import com.google.android.gms.games.request.GameRequest;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.Plus.PlusOptions;
 
+import java.util.ArrayList;
+
 public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     static final String TAG = "GameHelper";
 
-    /** Listener for sign-in success or failure events. */
+    /**
+     * Listener for sign-in success or failure events.
+     */
     public interface GameHelperListener {
         /**
          * Called when sign-in fails. As a result, a "Sign-In" button can be
          * shown to the user; when that button is clicked, call
          *
-         * @link{GamesHelper#beginUserInitiatedSignIn . Note that not all calls
-         *                                            to this method mean an
-         *                                            error; it may be a result
-         *                                            of the fact that automatic
-         *                                            sign-in could not proceed
-         *                                            because user interaction
-         *                                            was required (consent
-         *                                            dialogs). So
-         *                                            implementations of this
-         *                                            method should NOT display
-         *                                            an error message unless a
-         *                                            call to @link{GamesHelper#
-         *                                            hasSignInError} indicates
-         *                                            that an error indeed
-         *                                            occurred.
+         * @link{GamesHelper#beginUserInitiatedSignIn. Note that not all calls to
+         * this method mean an error; it may be a result of the fact that automatic
+         * sign-in could not proceed because user interaction was required (consent dialogs).
+         * So implementations of this method should NOT display an error message unless a call
+         * to @link{GamesHelper#hasSignInError} indicates that an error indeed  occurred.
          */
         void onSignInFailed();
 
-        /** Called when sign-in succeeds. */
+        /**
+         * Called when sign-in succeeds.
+         */
         void onSignInSucceeded();
     }
 
@@ -187,9 +179,8 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
      * After constructing this object, call @link{setup} from the onCreate()
      * method of your Activity.
      *
-     * @param clientsToUse
-     *            the API clients to use (a combination of the CLIENT_* flags,
-     *            or CLIENT_ALL to mean all clients).
+     * @param clientsToUse the API clients to use (a combination of the CLIENT_* flags,
+     *                     or CLIENT_ALL to mean all clients).
      */
     public GameHelper(Activity activity, int clientsToUse) {
         mActivity = activity;
@@ -278,8 +269,8 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         }
 
         if (0 != (mRequestedClients & CLIENT_SNAPSHOT)) {
-          builder.addScope(Drive.SCOPE_APPFOLDER);
-          builder.addApi(Drive.API);
+            builder.addScope(Drive.SCOPE_APPFOLDER);
+            builder.addApi(Drive.API);
         }
 
         mGoogleApiClientBuilder = builder;
@@ -292,8 +283,7 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
      * initialization tasks. Next, call @link{#onStart} from the onStart()
      * method of your Activity.
      *
-     * @param listener
-     *            The listener to be notified of sign-in events.
+     * @param listener The listener to be notified of sign-in events.
      */
     public void setup(GameHelperListener listener) {
         if (mSetupDone) {
@@ -326,12 +316,16 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         return mGoogleApiClient;
     }
 
-    /** Returns whether or not the user is signed in. */
+    /**
+     * Returns whether or not the user is signed in.
+     */
     public boolean isSignedIn() {
         return mGoogleApiClient != null && mGoogleApiClient.isConnected();
     }
 
-    /** Returns whether or not we are currently connecting */
+    /**
+     * Returns whether or not we are currently connecting
+     */
     public boolean isConnecting() {
         return mConnecting;
     }
@@ -357,7 +351,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         mShowErrorDialogs = show;
     }
 
-    /** Call this method from your Activity's onStart(). */
+    /**
+     * Call this method from your Activity's onStart().
+     */
     public void onStart(Activity act) {
         mActivity = act;
         mAppContext = act.getApplicationContext();
@@ -386,7 +382,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         }
     }
 
-    /** Call this method from your Activity's onStop(). */
+    /**
+     * Call this method from your Activity's onStop().
+     */
     public void onStop() {
         debugLog("onStop");
         assertConfigured("onStop");
@@ -407,10 +405,10 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
      * Returns the invitation ID received through an invitation notification.
      * This should be called from your GameHelperListener's
      *
-     * @link{GameHelperListener#onSignInSucceeded method, to check if there's an
-     *                                            invitation available. In that
-     *                                            case, accept the invitation.
      * @return The id of the invitation, or null if none was received.
+     * @link{GameHelperListener#onSignInSucceeded method, to check if there's an
+     * invitation available. In that
+     * case, accept the invitation.
      */
     public String getInvitationId() {
         if (!mGoogleApiClient.isConnected()) {
@@ -425,10 +423,10 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
      * Returns the invitation received through an invitation notification. This
      * should be called from your GameHelperListener's
      *
-     * @link{GameHelperListener#onSignInSucceeded method, to check if there's an
-     *                                            invitation available. In that
-     *                                            case, accept the invitation.
      * @return The invitation, or null if none was received.
+     * @link{GameHelperListener#onSignInSucceeded method, to check if there's an
+     * invitation available. In that
+     * case, accept the invitation.
      */
     public Invitation getInvitation() {
         if (!mGoogleApiClient.isConnected()) {
@@ -467,9 +465,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
      * Returns the tbmp match received through an invitation notification. This
      * should be called from your GameHelperListener's
      *
-     * @link{GameHelperListener#onSignInSucceeded method, to check if there's a
-     *                                            match available.
      * @return The match, or null if none was received.
+     * @link{GameHelperListener#onSignInSucceeded method, to check if there's a
+     * match available.
      */
     public TurnBasedMatch getTurnBasedMatch() {
         if (!mGoogleApiClient.isConnected()) {
@@ -484,10 +482,10 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
      * Returns the requests received through the onConnected bundle. This should
      * be called from your GameHelperListener's
      *
-     * @link{GameHelperListener#onSignInSucceeded method, to check if there are
-     *                                            incoming requests that must be
-     *                                            handled.
      * @return The requests, or null if none were received.
+     * @link{GameHelperListener#onSignInSucceeded method, to check if there are
+     * incoming requests that must be
+     * handled.
      */
     public ArrayList<GameRequest> getRequests() {
         if (!mGoogleApiClient.isConnected()) {
@@ -498,7 +496,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         return mRequests;
     }
 
-    /** Enables debug logging */
+    /**
+     * Enables debug logging
+     */
     public void enableDebugLog(boolean enabled) {
         mDebugLog = enabled;
         if (enabled) {
@@ -513,7 +513,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         enableDebugLog(enabled);
     }
 
-    /** Sign out and disconnect from the APIs. */
+    /**
+     * Sign out and disconnect from the APIs.
+     */
     public void signOut() {
         if (!mGoogleApiClient.isConnected()) {
             // nothing to do
@@ -694,7 +696,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         }
     }
 
-    /** Called when we successfully obtain a connection to a client. */
+    /**
+     * Called when we successfully obtain a connection to a client.
+     */
     @Override
     public void onConnected(Bundle connectionHint) {
         debugLog("onConnected: connected!");
@@ -769,7 +773,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         editor.commit();
     }
 
-    /** Handles a connection failure. */
+    /**
+     * Handles a connection failure.
+     */
     @Override
     public void onConnectionFailed(ConnectionResult result) {
         // save connection result for later reference
@@ -863,7 +869,7 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
             // error.
             debugLog("resolveConnectionResult: result has no resolution. Giving up.");
             giveUp(new SignInFailureReason(mConnectionResult.getErrorCode()));
-            
+
             mConnectionResult = null;
         }
     }
@@ -900,7 +906,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         notifyListener(false);
     }
 
-    /** Called when we are disconnected from the Google API client. */
+    /**
+     * Called when we are disconnected from the Google API client.
+     */
     @Override
     public void onConnectionSuspended(int cause) {
         debugLog("onConnectionSuspended, cause=" + cause);
@@ -925,7 +933,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
         }
     }
 
-    /** Shows an error dialog that's appropriate for the failure reason. */
+    /**
+     * Shows an error dialog that's appropriate for the failure reason.
+     */
     public static void showFailureDialog(Activity activity, int actResp,
                                          int errorCode) {
         if (activity == null) {
@@ -969,15 +979,11 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
     }
 
     static Dialog makeSimpleDialog(Activity activity, String text) {
-        return (new AlertDialog.Builder(activity)).setMessage(text)
-                .setNeutralButton(android.R.string.ok, null).create();
+        return BaseGameUtils.makeSimpleDialog(activity, text);
     }
 
-    static Dialog
-    makeSimpleDialog(Activity activity, String title, String text) {
-        return (new AlertDialog.Builder(activity)).setMessage(text)
-                .setTitle(title).setNeutralButton(android.R.string.ok, null)
-                .create();
+    static Dialog makeSimpleDialog(Activity activity, String title, String text) {
+        return BaseGameUtils.makeSimpleDialog(activity, title, text);
     }
 
     public Dialog makeSimpleDialog(String text) {

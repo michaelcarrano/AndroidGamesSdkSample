@@ -58,15 +58,18 @@ public abstract class BaseGameActivity extends FragmentActivity implements
     private final static String TAG = "BaseGameActivity";
     protected boolean mDebugLog = false;
 
-    /** Constructs a BaseGameActivity with default client (GamesClient). */
+    /**
+     * Constructs a BaseGameActivity with default client (GamesClient).
+     */
     protected BaseGameActivity() {
         super();
     }
 
     /**
      * Constructs a BaseGameActivity with the requested clients.
+     *
      * @param requestedClients The requested clients (a combination of CLIENT_GAMES,
-     *         CLIENT_PLUS).
+     *                         CLIENT_PLUS).
      */
     protected BaseGameActivity(int requestedClients) {
         super();
@@ -81,7 +84,7 @@ public abstract class BaseGameActivity extends FragmentActivity implements
      * is a no-op.
      *
      * @param requestedClients A combination of the flags CLIENT_GAMES, CLIENT_PLUS
-     *         or CLIENT_ALL to request all available clients.
+     *                         or CLIENT_ALL to request all available clients.
      */
     protected void setRequestedClients(int requestedClients) {
         mRequestedClients = requestedClients;

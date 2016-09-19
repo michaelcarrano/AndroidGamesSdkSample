@@ -173,9 +173,9 @@ class GameHelperUtils {
         } catch (Exception ex) {
             ex.printStackTrace();
             Log.w(GameHelper.TAG, "*** GameHelper could not found resource id #" + resId + ". " +
-                "This probably happened because you included it as a stand-alone JAR. " +
-                "BaseGameUtils should be compiled as a LIBRARY PROJECT, so that it can access " +
-                "its resources. Using a fallback string.");
+                    "This probably happened because you included it as a stand-alone JAR. " +
+                    "BaseGameUtils should be compiled as a LIBRARY PROJECT, so that it can access " +
+                    "its resources. Using a fallback string.");
             return FALLBACK_STRINGS[whichString];
         }
     }

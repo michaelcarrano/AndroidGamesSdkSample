@@ -17,7 +17,7 @@ public class BaseGameUtils {
      * Show an {@link AlertDialog} with an 'OK' button and a message.
      *
      * @param activity the Activity in which the Dialog should be displayed.
-     * @param message the message to display in the Dialog.
+     * @param message  the message to display in the Dialog.
      */
     public static void showAlert(Activity activity, String message) {
         (new AlertDialog.Builder(activity)).setMessage(message)
@@ -28,11 +28,11 @@ public class BaseGameUtils {
      * Resolve a connection failure from
      * {@link GoogleApiClient.OnConnectionFailedListener#onConnectionFailed(ConnectionResult)}
      *
-     * @param activity the Activity trying to resolve the connection failure.
-     * @param client the GoogleAPIClient instance of the Activity.
-     * @param result the ConnectionResult received by the Activity.
-     * @param requestCode a request code which the calling Activity can use to identify the result
-     *                    of this resolution in onActivityResult.
+     * @param activity             the Activity trying to resolve the connection failure.
+     * @param client               the GoogleAPIClient instance of the Activity.
+     * @param result               the ConnectionResult received by the Activity.
+     * @param requestCode          a request code which the calling Activity can use to identify the result
+     *                             of this resolution in onActivityResult.
      * @param fallbackErrorMessage a generic error message to display if the failure cannot be resolved.
      * @return true if the connection failure is resolved, false otherwise.
      */
@@ -70,6 +70,7 @@ public class BaseGameUtils {
      * including changing the package name to a non-Google package name and
      * replacing the placeholder IDs. Shows alert dialogs to notify about problems.
      * DO NOT call this method from a production app, it's meant only for samples!
+     *
      * @param resIds the resource IDs to check for placeholders
      * @return true if sample is set up correctly; false otherwise.
      */
@@ -105,9 +106,10 @@ public class BaseGameUtils {
 
     /**
      * Show a {@link Dialog} with the correct message for a connection error.
-     *  @param activity the Activity in which the Dialog should be displayed.
-     * @param requestCode the request code from onActivityResult.
-     * @param actResp the response code from onActivityResult.
+     *
+     * @param activity         the Activity in which the Dialog should be displayed.
+     * @param requestCode      the request code from onActivityResult.
+     * @param actResp          the response code from onActivityResult.
      * @param errorDescription the resource id of a String for a generic error message.
      */
     public static void showActivityResultError(Activity activity, int requestCode, int actResp, int errorDescription) {
@@ -151,7 +153,7 @@ public class BaseGameUtils {
      * Create a simple {@link Dialog} with an 'OK' button and a message.
      *
      * @param activity the Activity in which the Dialog should be displayed.
-     * @param text the message to display on the Dialog.
+     * @param text     the message to display on the Dialog.
      * @return an instance of {@link AlertDialog}
      */
     public static Dialog makeSimpleDialog(Activity activity, String text) {
@@ -163,8 +165,8 @@ public class BaseGameUtils {
      * Create a simple {@link Dialog} with an 'OK' button, a title, and a message.
      *
      * @param activity the Activity in which the Dialog should be displayed.
-     * @param title the title to display on the dialog.
-     * @param text the message to display on the Dialog.
+     * @param title    the title to display on the dialog.
+     * @param text     the message to display on the Dialog.
      * @return an instance of {@link AlertDialog}
      */
     public static Dialog makeSimpleDialog(Activity activity, String title, String text) {
